@@ -1,0 +1,20 @@
+name: cd 
+
+on:
+ workflow_run:
+  workflows: ["ci"]
+  types:
+    - completed
+
+
+jobs:
+  docker:
+    runs-on: self-hosted
+    steps:
+    - name: Pull docker image
+      run: sudo docker pull tawfikiddrisu/cicd-pipeline:v1.0.0
+    - name: Delete Old docker container
+      run: sudo docker rm -f cicd-pipeline-container || true
+    - name: Run Docker container
+      run: sudo docker run -d -p 8080:8080 --name cicd-pipeline-container tawfikiddrisu/cicd-pipeline:v1.0.0
+  
