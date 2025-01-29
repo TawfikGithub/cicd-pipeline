@@ -22,4 +22,4 @@ jobs:
     - name: Build the Docker image
       run: docker build -t mynodeimage .
     - name: Push image to Dockerhub
-      run: docker push $DOCKER_USERNAME/mynodeimage:latest
+      run: docker push tawfikiddrisu/mynodeimage:latest
